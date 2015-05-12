@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+
+
+    <meta charset="UTF-8">
+    <title>Syrian Refugees in Iraq</title>
+    <!-- The style.css file allows you to change the look of your web pages.
+         If you include the next line in all your web pages, they will all share the same look.
+         This makes it easier to make new pages for your site. -->
+
+    <script src="./jquery-2.1.1.min.js"></script>
+
+
+      <!--
+    Load CartoDB's code so we can pull in our CartoDB maps.
+    -->
+    <script src="./cartodb-3.14.2.js"></script>
+    <script src="./jquery-ui.1.10.3.js"></script>
+
+    <!--Load jQRangeSlider-->
+    <!--<script src="https://rawgit.com/aceb694/jQRangeSlider-5.7.1/master/jQRangeSlider-min.js"></script>-->
+    <!--<script src="https://rawgit.com/aceb694/jQRangeSlider-5.7.1/master/jQAllRangeSliders-min.js"></script>-->
+    <script src="./jQDateRangeSlider-withRuler-min.js"></script>
+
+
+
+
+    <link rel="stylesheet" href="./css/cartodb.css" type="text/css"/>
+    <link rel="stylesheet" href="./css/jquery-ui.css" type="text/css"/>
+
+    <!--jQRangeSlider-->
+    <link rel="stylesheet" href="./css/iThing.css" type="text/css" />
+
+  <style>
+
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+
+  #map {
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+}
+
+    #title{
+      text-align: center;
+      font-size: 20px;
+      font-family: "Arial";
+      float: left;
+      padding-left: 400px;
+      padding-top: 25px;
+      color: #74d94e;
+    }
+
+    #slider {
+        position: absolute;
+        bottom: 40px;
+        right: 40px;
+        left:40px;
+      }
+
+      #legend {
+        font-family: serif;
+        font-size: 27px;
+        position: absolute;
+        bottom: 80px;
+        left: 40px;
+
+    img {
+      float:left;
+    }
+
+    h4{
+      text-transform: uppercase;
+    }
+
+  </style>
+  </head>
+  <body>
+
+<!--  /--------------------------------CREATE BODY DIVS------------------------------------------------------------/  -->
+
+
+    <div id="map"></div>
+    <div id="slider"></div>
+    <div id="legend"></div>
+
+<!--------------------------------END CREATE BODY DIVS------------------------------------------------------------      -->
+
+
+<script>
+/*--------------------------------START GENERATE SLIDER------------------------------------------------------------*/
+        /*label array for date range slider*/
+        var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
+
+
+        /*Add Date Range Slider with the following options*/
+        $("#slider").dateRangeSlider(
+        {
+            defaultValues:
+            {
+                min: new Date(2013, 0),
+                max: new Date(2013, 12, 1)
+            },
+            bounds:
+            {
+                min: new Date(2013, 0),
+                max: new Date(2013, 12, 1)
+            },
+            step:
+            {
+                months: 1
+            },
+            /*The option scales requires an array of objects. Each object represents the configuration of one level.
+            Scale configuration object can contain 5 functions:*/
+            scales:
+            [{
+                //first: function(value){ return value; },
+                //end: function(value) {return value; },
+                next: function(value)
+                {
+                    var next = new Date(value);
+                    return new Date(next.setMonth(value.getMonth() + 1));
+                },
+                label: function(value)
+                {
+                    return months[value.getMonth()];
+                }/*,
+                format: function(tickContainer, tickStart, tickEnd){
+                  tickContainer.addClass("myCustomClass");
+                }*/
+            }]
+        });
+/*--------------------------------END GENERATE SLIDER------------------------------------------------------------ */
+
+
+
+
+
+
+
+
+
+/*------------------------------START: PULL DATA FROM DATABASE------------------------------------------------------------*/
+         var As_Sulaymaniyah;
+         var Al_Anbar;
+         var Arbil;
+         var Dihok;
+
+
+
+    $(document).ready(function()
+    {
+        $.getJSON('https://aceb694.cartodb.com/api/v2/sql?q=SELECT%20monthly_pop_avg::integer%20AS%20monthly_pop_avg_int,%20month,%20year,%20governorate%20FROM%20sulaymaniyah_anbar_erbil_duhok_ver3%20WHERE%20year%20=%202013%20AND%20governorate%20=%20%27As-Sulaymaniyah%27%20ORDER%20BY%20month')
+        .done(function (JSONarray)
+        {
+          As_Sulaymaniyah =  JSONarray;
+        })
+
+        $.getJSON('https://aceb694.cartodb.com/api/v2/sql?q=SELECT%20monthly_pop_avg::integer%20AS%20monthly_pop_avg_int,%20month,%20year,%20governorate%20FROM%20sulaymaniyah_anbar_erbil_duhok_ver3%20WHERE%20year%20=%202013%20AND%20governorate%20=%20%27Al-Anbar%27%20ORDER%20BY%20month')
+        .done(function (JSONarray)
+        {
+          Al_Anbar =  JSONarray;
+        })
+
+        $.getJSON('https://aceb694.cartodb.com/api/v2/sql?q=SELECT%20monthly_pop_avg::integer%20AS%20monthly_pop_avg_int,%20month,%20year,%20governorate%20FROM%20sulaymaniyah_anbar_erbil_duhok_ver3%20WHERE%20year%20=%202013%20AND%20governorate%20=%20%27Arbil%27%20ORDER%20BY%20month')
+        .done(function (JSONarray)
+        {
+          Arbil =  JSONarray;
+        })
+
+        $.getJSON('https://aceb694.cartodb.com/api/v2/sql?q=SELECT%20monthly_pop_avg::integer%20AS%20monthly_pop_avg_int,%20month,%20year,%20governorate%20FROM%20sulaymaniyah_anbar_erbil_duhok_ver3%20WHERE%20year%20=%202013%20AND%20governorate%20=%20%27Dihok%27%20ORDER%20BY%20month')
+        .done(function (JSONarray)
+        {
+          Dihok =  JSONarray;
+        })
+    });
+
+
+
+    $(document).ready(function ()
+    {
+        cartodb.createVis('map', 'https://aceb694.cartodb.com/api/v2/viz/dbe29aca-e6dc-11e4-b5d2-0e0c41326911/viz.json',
+        {
+            cartodb_logo: false
+        });
+    });
+
+
+
+/*-------------------------------END: PULL DATA FROM DATABASE------------------------------------------------------------*/
+
+
+
+
+
+/*-------------------------------START: EVENT HANDLERS------------------------------------------------------------*/
+
+
+    $("#slider").on("valuesChanging",
+
+      function(e, sliderData)
+      {
+          console.log(As_Sulaymaniyah);
+          console.log(Al_Anbar);
+          console.log(Arbil);
+          console.log(Dihok);
+
+          var minMonth = sliderData.values.min.getMonth() + 1;  //retrieve the month the left most slider is on
+
+          if(sliderData.values.max.getMonth() == 0)
+              maxMonth = 12; /*because the slider value is 0 when it is selecting december, and it should be 12, set maxMonth to 12 here */
+          else
+              maxMonth =  sliderData.values.max.getMonth(); //select the month the right most slider is on
+
+          console.log('min value: ' + minMonth + ', max value: ' + maxMonth);
+          //console.log(JSONfromCartoDB.rows[0].governorate);
+
+          switch (JSONfromCartoDB.rows.governorate)
+          {
+            case "Al-Anbar":
+            //subtract maxValue from minValue
+              //if positive post the increase
+              console.log(JSONfromCartoDB.rows.governorate);
+              break;
+          }
+      });
+
+/*-------------------------------END: EVENT HANDLERS------------------------------------------------------------*/
+
+
+    </script>
+
+
+</body>
+</html>
