@@ -80,6 +80,11 @@
       text-transform: uppercase;
     }
 
+    #sulaymaniyah_anbar_erbil_duhok_ver3
+    {
+        polygon-fill: #253494;
+    }
+
   </style>
   </head>
   <body>
@@ -145,15 +150,37 @@
 
 
 
+/*------------------------------START: DECLARE GLOBAL VARIABLES------------------------------------------------------------*/
 
 
-/*------------------------------START: PULL DATA FROM DATABASE------------------------------------------------------------*/
+
+
+
          var As_Sulaymaniyah;
          var Al_Anbar;
          var Arbil;
          var Dihok;
 
 
+        var layerSource = {
+        user_name: 'aceb694',
+        type: 'cartodb',
+        sublayers: [{
+             sql: "SELECT * FROM sulaymaniyah_anbar_erbil_duhok_ver3", // African countries
+             cartocss: '#sulaymaniyah_anbar_erbil_duhok_ver3{polygon-fill:#FF6600;polygon-opacity:0.7;line-color:#FFF;line-width:1;line-opacity:1;}'
+         }]
+      }
+
+         /*------------------------------END: DECLARE GLOBAL VARIABLES------------------------------------------------------------*/
+
+
+
+
+
+
+
+
+/*------------------------------START: PULL DATA FROM DATABASE------------------------------------------------------------*/
 
     $(document).ready(function()
     {
@@ -181,8 +208,16 @@
           Dihok =  JSONarray;
         })
     });
+/*-------------------------------END: PULL DATA FROM DATABASE------------------------------------------------------------*/
 
 
+
+
+
+
+
+
+/*-------------------------------START: LOAD CARTODB MAP------------------------------------------------------------*/
 
     $(document).ready(function ()
     {
@@ -192,9 +227,11 @@
         });
     });
 
+/*-------------------------------END: LOAD CARTODB MAP------------------------------------------------------------*/
 
 
-/*-------------------------------END: PULL DATA FROM DATABASE------------------------------------------------------------*/
+
+
 
 
 
@@ -212,24 +249,31 @@
           console.log(Arbil);
           console.log(Dihok);
 
-          var minMonth = sliderData.values.min.getMonth() + 1;  //retrieve the month the left most slider is on
+
+          var minMonth = sliderData.values.min.getMonth();  //retrieve the month the left most slider is on
+
 
           if(sliderData.values.max.getMonth() == 0)
-              maxMonth = 12; /*because the slider value is 0 when it is selecting december, and it should be 12, set maxMonth to 12 here */
+              maxMonth = 11; /*because the slider value is 0 when it is selecting december, and it should be 11 because december data is in the array element 11*/
           else
-              maxMonth =  sliderData.values.max.getMonth(); //select the month the right most slider is on
+              maxMonth =  sliderData.values.max.getMonth() - 1; //select the month the right most slider is on
 
           console.log('min value: ' + minMonth + ', max value: ' + maxMonth);
           //console.log(JSONfromCartoDB.rows[0].governorate);
 
-          switch (JSONfromCartoDB.rows.governorate)
-          {
-            case "Al-Anbar":
-            //subtract maxValue from minValue
-              //if positive post the increase
-              console.log(JSONfromCartoDB.rows.governorate);
-              break;
-          }
+          var As_Sulaymaniyah_difference = As_Sulaymaniyah.rows[maxMonth].monthly_pop_avg_int - As_Sulaymaniyah.rows[minMonth].monthly_pop_avg_int;
+
+          var Al_Anbar_difference = Al_Anbar.rows[maxMonth].monthly_pop_avg_int - Al_Anbar.rows[minMonth].monthly_pop_avg_int;
+
+          var Arbil_difference = Arbil.rows[maxMonth].monthly_pop_avg_int - Arbil.rows[minMonth].monthly_pop_avg_int;
+
+          var Dihok_difference = Dihok.rows[maxMonth].monthly_pop_avg_int - Dihok.rows[minMonth].monthly_pop_avg_int;
+
+          console.log(As_Sulaymaniyah_difference);
+          console.log(Al_Anbar_difference);
+          console.log(Arbil_difference);
+          console.log(Dihok_difference);
+
       });
 
 /*-------------------------------END: EVENT HANDLERS------------------------------------------------------------*/
