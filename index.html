@@ -160,13 +160,19 @@
          var Al_Anbar;
          var Arbil;
          var Dihok;
+         
+         
+        
 
          var RefugeePopulationLayer;
 
+<<<<<<< HEAD
 
 
 
 
+=======
+>>>>>>> origin/master
       //   var layerSource = {
       //   user_name: 'aceb694',
       //   type: 'cartodb',
@@ -228,6 +234,7 @@
     {
         cartodb.createVis('map', 'https://aceb694.cartodb.com/api/v2/viz/dbe29aca-e6dc-11e4-b5d2-0e0c41326911/viz.json',
         {
+<<<<<<< HEAD
             cartodb_logo: false,
             legends: true
         }).done(function(vis,layers)
@@ -241,8 +248,16 @@
 
 
 
+=======
+            cartodb_logo: false
+        }).done(function(vis,layers)
+        {
+            var sublayer2 = layers[1].getSubLayer(1);
+>>>>>>> origin/master
         })
     });
+    
+    // 
 
     //
 
