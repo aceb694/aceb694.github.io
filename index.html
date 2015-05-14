@@ -345,6 +345,12 @@
           RefugeePopulationLayer.setCartoCSS("#sulaymaniyah_anbar_erbil_duhok_ver3 [governorate= '" + AvgMonthlyRefugeePopDiff[0].governorate + "']{ polygon-fill: " + AvgMonthlyRefugeePopDiff[0].hexColor + "; } [governorate='" + AvgMonthlyRefugeePopDiff[1].governorate + "'] { polygon-fill: " + AvgMonthlyRefugeePopDiff[1].hexColor + "; } [governorate= '" + AvgMonthlyRefugeePopDiff[2].governorate + "']{ polygon-fill: " + AvgMonthlyRefugeePopDiff[2].hexColor + ";} [governorate= '" + AvgMonthlyRefugeePopDiff[3].governorate + "']{ polygon-fill: " + AvgMonthlyRefugeePopDiff[3].hexColor + ";}"
           );
 
+
+          for(var x=0; x<4; x++)
+           {
+              console.log('Governorate = ' + AvgMonthlyRefugeePopDiff[x].governorate + '; Difference = ' + AvgMonthlyRefugeePopDiff[x].diffInMonths + '; Color = ' + AvgMonthlyRefugeePopDiff[x].hexColor);
+           }
+
 // -3000 to -2001 #00bbff
 // -2000 to -1001 #00ccff
 // -1000 to -1 #00ddff
