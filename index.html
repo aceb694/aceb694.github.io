@@ -75,10 +75,9 @@
         margin: 50; padding: 0;
         z-index: 100;*/
 
-      #legend
-      {
-        bottom: 100px;
-
+      div.cartodb-legend.density {
+          bottom: 100px;
+          right: 40px;
       }
 
     img {
@@ -89,10 +88,7 @@
       text-transform: uppercase;
     }
 
-    #sulaymaniyah_anbar_erbil_duhok_ver3
-    {
-        polygon-fill: #253494;
-    }
+
 
   </style>
   </head>
@@ -103,7 +99,8 @@
 
     <div id="map"></div>
     <div id="slider"></div>
-    <div id="legend"></div>
+    <div id="legendIncrease"></div>
+    <div id="legendDecrease"></div>
 
 <!--------------------------------END CREATE BODY DIVS------------------------------------------------------------      -->
 
@@ -258,12 +255,23 @@
 
         })
 
-        var densityLegend = new cdb.geo.ui.Legend.Density({
-            title: "Density Legend",
-            left: "0", right: "10", colors: [ "#58A062", "#F07971", "#54BFDE", "#9BC562", "#FABB5C" ]
-          });
+              var densityLegendIncrease = new cdb.geo.ui.Legend.Density(
+                  {
+                      title: "Refugee Population Increase",
+                      left: "0", right: "10", colors: [ "#58A062", "#F07971", "#54BFDE", "#9BC562", "#FABB5C" ]
+                  });
 
-            $('#legend').append(densityLegend.render().el);
+                  $('#legendIncrease').append(densityLegendIncrease.render().el);
+
+
+            // var densityLegendDecrease = new cdb.geo.ui.Legend.Density({
+            //     title: "Refugee Population Decrease",
+            //     left: "0", right: "10", colors: [ "#58A062", "#F07971", "#54BFDE", "#9BC562", "#FABB5C" ]
+            //   });
+
+            //     densityLegendDecrease.addTo("#legendIncrease");
+
+
 
 
         // var densityLegend = new cdb.geo.ui.Legend.Density({
