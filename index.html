@@ -146,8 +146,16 @@ bullet{
   margin-left: 10px;
 }
 
+#text {
+  margin-left: 10px;
+}
+
 bullet{
   margin-left: 10px;
+}
+
+#bodyContainer{
+  width: 80%;
 }
 
 
@@ -160,7 +168,7 @@ bullet{
 
 
     <div id="title">
-      Syrian Refugees Not Residing in Camps within Iraqi Governorates of Dihok, Arbil, As-Sulaymaniyah and Al-Anbar
+      Syrian Refugees Not Residing in Camps within Iraq Governorates of Dihok, Arbil, As-Sulaymaniyah and Al-Anbar
     </div>
 
     <div id="sub_heading">
@@ -173,18 +181,26 @@ bullet{
     </div>
     <div id="events"></div>
     <div id="legends"></div>
-    <div id="title2"><b>Data Sources:</b></div>
-    <div id="text"><bullet></bullet>UNHCR: <i>http://data.unhcr.org/syrianrefugees/regional.php</i></br><bullet></bullet>Washington Post: <i>http://apps.washingtonpost.com/g/page/world/timeline-unrest-in-syria/207/</i></br><bullet></bullet>Aljazeera: <i>http://www.aljazeera.com/indepth/interactive/2012/02/201225111654512841.html</i>
-    </div>
 
-   <div id="title2"><b>Methodology:</b></div>
-   <div id="text"><i>Manipulating Population Data:</i> </br>
-                          1. Acquired daily non-camp refugee population values, beginning in 2011, for Dihok, Arbil, As-Sulaymaniyah and Al-Anbar governorates then used SQL to merge the four data sets into a single table representing the 2013 monthly averages of each governorate.</br></br>
-                          2. Created Syria civil war timeline including events starting in 2011.
+<div id="bodyContainer">
+                 <div id="title2"><b>About the Mapmaker:</b></div>
+                 <div id="text">My name is Ben and I am currently a student in the M.A. International Affairs at The New School in New York City. I am committed to better understanding situations affecting the world's refugees and helping others to do the same. To that end, I have created this map to better understand how Syrian civil war events impacted non-camp refugee populations within four governorates in Iraq. </div>
 
+                 <div id="title2"><b>Methodology:</b></div>
+                 <div id="text"><i>Manipulating Refugee Population Data:</i> Acquired daily non-camp refugee population values (UNHCR), beginning in 2011, for Dihok, Arbil, As-Sulaymaniyah and Al-Anbar governorates then used SQL to merge the four data sets into a single table representing the 2013 monthly averages of each governorate.</br></br>
+                          <i>Creating Event Timeline:</i></br>
+                          1. Synthesized and summarized Syria civil war event timeline including events starting in 2011 (Aljazeera and The Washington Post).</br>
+                          2. Loaded jQRangeSlider plug-in onto map.</br></br>
+                          <i>Responding to Slider Movements with JavaScript</i></br>
+                          1. jQuery getJSON() pulls population data stored in CartoDB which is used to calculate each governorate's refugee increase or decrease between the two months the viewer selects with the slider.</br>
+                          2. setCartoCSS() updates polygon-fill to visualize the governorate's refugee increase or decrease.</br>
+                          3. setSQL() selects events occurring within the two months chosen and displays them as points over the Syrian city they occurred in or to the right if the event did not occur within a city.</br>
+                          </div>
 
-
-
+                        <div id="title2"><b>Data Sources:</b></div>
+                          <div id="text"><bullet></bullet>UNHCR: <i>http://data.unhcr.org/syrianrefugees/regional.php</i></br><bullet></bullet>Washington Post: <i>http://apps.washingtonpost.com/g/page/world/timeline-unrest-in-syria/207/</i></br><bullet></bullet>Aljazeera: <i>http://www.aljazeera.com/indepth/interactive/2012/02/201225111654512841.html</i>
+                          </div>
+</div>
 
 
 
