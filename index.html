@@ -42,51 +42,113 @@
     width: 100%;
   }
 
+
+
   #map {
-  display: inline-block;
-  height: 100%;
-  width: 100%;
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    float: left;
+    height: 100%;
+    width: 60%;
 }
 
-    #title{
-      text-align: center;
-      font-size: 20px;
-      font-family: "Arial";
-      float: left;
-      padding-left: 400px;
-      padding-top: 25px;
-      color: #74d94e;
-    }
 
     #slider {
         position: absolute;
+        z-index: 2;
         bottom: 40px;
         right: 40px;
         left:40px;
+        width: 80%;
       }
 
-      /*/*legend {
-        /*position: relative;
-        margin-bottom: 200px;
-        border:5px;
-        border-color: #253494;*/
-       /*/* /*position:absolute;*/
-        /*top: 20px; right: 20px;
-        margin: 50; padding: 0;
-        z-index: 100;*/
-
-      div.cartodb-legend.density {
-          bottom: 100px;
-          right: 40px;
+        #events
+      {
+         float: left;
+         display: inline-block;
+         z-index: 4;
+         width: 20%;
+         height: 29%;
+         color: black;
+         font-family: monospace;
+         margin-left: 1%;
+         margin-right: 1%;
+         margin-top: 1%;
       }
 
-    img {
-      float:left;
-    }
 
-    h4{
-      text-transform: uppercase;
-    }
+      #legends
+      {
+           float: left;
+           width: 19%;
+           border: 1px solid #999;
+          margin: 1%;
+      }
+
+      div.cartodb-legend.density ul
+      {
+          min-width: 100%;
+      }
+
+      div.cartodb-legend .legend-title {
+            margin: 1%;
+      }
+
+
+
+     div.cartodb-legend.density{
+         float: left;
+         box-shadow: none;
+         border: none;
+         position: static;
+         height: 30%;
+         width: 89%;
+         padding: 4%;
+     }
+
+     #title{
+        display: inline-block;
+        padding: 5px 5px 0 5px;
+        font-family: monospace;
+        width: 60%;
+        font-size: 26px;
+        display: inline-block;
+     }
+
+     #sub_heading{
+        display: inline-block;
+        padding: 5px 5px 0 5px;
+        font-family: monospace;
+        width: 60%;
+        font-size: 16px;
+        display: inline-block;
+     }
+
+#title2{
+  display: inline-block;
+  width: 100%;
+  margin-top: 15px;
+  padding-bottom: 5px;
+}
+
+bullet{
+    width: 5px;
+    height: 5px;
+    margin-bottom: 2px;
+    margin-right: 10px;
+    background: black;
+    display: inline-block;
+    border-radius: 15px;
+}
+
+#title2 {
+  margin-left: 10px;
+}
+
+bullet{
+  margin-left: 10px;
+}
 
 
 
@@ -97,10 +159,34 @@
 <!--  /--------------------------------CREATE BODY DIVS------------------------------------------------------------/  -->
 
 
-    <div id="map"></div>
-    <div id="slider"></div>
-    <div id="legendIncrease"></div>
-    <div id="legendDecrease"></div>
+    <div id="title">
+      Syrian Refugees Not Residing in Camps within Iraqi Governorates of Dihok, Arbil, As-Sulaymaniyah and Al-Anbar
+    </div>
+
+    <div id="sub_heading">
+    Move the slider to see the population increase or decrease between the two months.
+    </div>
+
+
+    <div id="map">
+            <div id="slider"></div>
+    </div>
+    <div id="events"></div>
+    <div id="legends"></div>
+    <div id="title2"><b>Data Sources:</b></div>
+    <div id="text"><bullet></bullet>UNHCR: <i>http://data.unhcr.org/syrianrefugees/regional.php</i></br><bullet></bullet>Washington Post: <i>http://apps.washingtonpost.com/g/page/world/timeline-unrest-in-syria/207/</i></br><bullet></bullet>Aljazeera: <i>http://www.aljazeera.com/indepth/interactive/2012/02/201225111654512841.html</i>
+    </div>
+
+   <div id="title2"><b>Methodology:</b></div>
+   <div id="text"><i>Manipulating Population Data:</i> </br>
+                          1. Acquired daily non-camp refugee population values, beginning in 2011, for Dihok, Arbil, As-Sulaymaniyah and Al-Anbar governorates then used SQL to merge the four data sets into a single table representing the 2013 monthly averages of each governorate.</br></br>
+                          2. Created Syria civil war timeline including events starting in 2011.
+
+
+
+
+
+
 
 <!--------------------------------END CREATE BODY DIVS------------------------------------------------------------      -->
 
@@ -108,47 +194,6 @@
 <script>
 /*--------------------------------START GENERATE SLIDER------------------------------------------------------------*/
         /*label array for date range slider*/
-        var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
-
-
-        /*Add Date Range Slider with the following options*/
-        $("#slider").dateRangeSlider(
-        {
-            valueLabels: "hide",
-            defaultValues:
-            {
-                min: new Date(2013, 0),
-                max: new Date(2013, 2, 1)
-            },
-            bounds:
-            {
-                min: new Date(2013, 0),
-                max: new Date(2013, 12, 1)
-            },
-            step:
-            {
-                months: 1
-            },
-            /*The option scales requires an array of objects. Each object represents the configuration of one level.
-            Scale configuration object can contain 5 functions:*/
-            scales:
-            [{
-                //first: function(value){ return value; },
-                //end: function(value) {return value; },
-                next: function(value)
-                {
-                    var next = new Date(value);
-                    return new Date(next.setMonth(value.getMonth() + 1));
-                },
-                label: function(value)
-                {
-                    return months[value.getMonth()];
-                }/*,
-                format: function(tickContainer, tickStart, tickEnd){
-                  tickContainer.addClass("myCustomClass");
-                }*/
-            }]
-        });
 /*--------------------------------END GENERATE SLIDER------------------------------------------------------------ */
 
 
@@ -167,11 +212,29 @@
          var Al_Anbar;
          var Arbil;
          var Dihok;
+         var SyriaEventsJSON;
 
 
 
 
          var RefugeePopulationLayer;
+         var EventsLayer;
+
+        var blue5 = 'hsla(231, 95%, 25%, 1)';
+        var blue4 = 'hsla(231, 95%, 45%, 0.92)';
+        var blue3 = 'hsla(231, 95%, 55%, 0.85)';
+        var blue2 = 'hsla(231, 95%, 65%, 0.75)';
+        var blue1 = 'hsla(231, 95%, 75%, 0.66)';
+
+        var red6 = 'hsla(360, 95%, 25%, 1)';
+        var red5 = 'hsla(360, 85%, 35%, 0.91)';
+        var red4 = 'hsla(360, 75%, 45%, 0.83)';
+        var red3 = 'hsla(360, 65%, 55%, 0.75)';
+        var red2 = 'hsla(360, 55%, 55%, 0.68)';
+        var red1 = 'hsla(360, 55%, 75%, 0.62)';
+
+        var line_color = 'white';
+        var line_width = .5;
 
       //   var layerSource = {
       //   user_name: 'aceb694',
@@ -218,6 +281,13 @@
         {
           Dihok =  JSONarray;
         })
+
+        $.getJSON('https://aceb694.cartodb.com/api/v2/sql?q=SELECT%20*%20FROM%20syria_timeline_28coordinates_only_29_ver3%20WHERE EXTRACT(YEAR from%20date)%20=%202013')
+        .done(function (JSONarray)
+        {
+          SyriaEventsJSON =  JSONarray;
+        })
+
     });
 /*-------------------------------END: PULL DATA FROM DATABASE------------------------------------------------------------*/
 
@@ -241,37 +311,56 @@
 
 
 
+
         cartodb.createVis('map', 'https://aceb694.cartodb.com/api/v2/viz/dbe29aca-e6dc-11e4-b5d2-0e0c41326911/viz.json',
         {
             cartodb_logo: false,
-            legends: false
+            legends: false,
+            search: false,
+            shareable: false
         }).done(function(vis,layers)
         {
+
+
+
             // alert("Layers has " + layers.length + " layers.");
 
             RefugeePopulationLayer = layers[1].getSubLayer(0);
+
+
+            EventsLayer = layers[1].getSubLayer(1);
+
+
+            // console.log(EventsLayer.getCartoCSS());
 
             // alert("Layers has " + layers[1].getSubLayerCount() + " sublayers.");
 
         })
 
+          generateSlider();
+
               var densityLegendIncrease = new cdb.geo.ui.Legend.Density(
                   {
                       title: "Refugee Population Increase",
-                      left: "0", right: "10", colors: [ "#58A062", "#F07971", "#54BFDE", "#9BC562", "#FABB5C" ]
+                      left: "0", right: ">10000", colors: [ red1, red2, red3, red4, red5, red6 ]
                   });
 
-                  $('#legendIncrease').append(densityLegendIncrease.render().el);
+                $('#legends').append(densityLegendIncrease.render().el);
+
+
 
 
             var densityLegendDecrease = new cdb.geo.ui.Legend.Density({
                 title: "Refugee Population Decrease",
-                left: "0", right: "10", colors: [ "#58A062", "#F07971", "#54BFDE", "#9BC562", "#FABB5C" ]
+                left: "0", right: ">800", colors: [ blue1, blue2, blue3, blue4, blue5 ]
               });
 
-                 $('#legendDecrease').append(densityLegendDecrease.render().el);
+                 $('#legends').append(densityLegendDecrease.render().el);
 
 
+                 // $('div.quartile').css("background", function(value){
+                 //        return .013;
+                 //  } );
 
 
         // var densityLegend = new cdb.geo.ui.Legend.Density({
@@ -308,6 +397,8 @@
           console.log(Dihok);
 
 
+
+
           var minMonth = sliderData.values.min.getMonth();  //retrieve the month the left most slider is on
 
 
@@ -317,28 +408,6 @@
               maxMonth =  sliderData.values.max.getMonth() - 1; //select the month the right most slider is on
 
           console.log('min value: ' + minMonth + ', max value: ' + maxMonth);
-          //console.log(JSONfromCartoDB.rows[0].governorate);
-
-          // var GovernorateDifference = new Array(4,3,5,'d');
-            // var difference = {
-            //   governorate: 'Al-Anbar',
-            //   difference: Al_Anbar.rows[maxMonth].monthly_pop_avg_int - Al_Anbar.rows[minMonth].monthly_pop_avg_int
-            // },
-            // var difference = {
-            //   governorate: 'As-Sulaymaniyah',
-            //   difference: As_Sulaymaniyah.rows[maxMonth].monthly_pop_avg_int - As_Sulaymaniyah.rows[minMonth].monthly_pop_avg_int
-            // },
-            // var difference = {
-            //   governorate: 'Arbil',
-            //   difference: Arbil.rows[maxMonth].monthly_pop_avg_int - Arbil.rows[minMonth].monthly_pop_avg_int
-            // });
-
-          // var GovernorateDifference = {
-          //     Al_Anbar_difference: Al_Anbar.rows[maxMonth].monthly_pop_avg_int - Al_Anbar.rows[minMonth].monthly_pop_avg_int,
-          //     As_Sulaymaniyah_difference: As_Sulaymaniyah.rows[maxMonth].monthly_pop_avg_int - As_Sulaymaniyah.rows[minMonth].monthly_pop_avg_int,
-          //     Arbil_difference: Arbil.rows[maxMonth].monthly_pop_avg_int - Arbil.rows[minMonth].monthly_pop_avg_int,
-          //     Dihok_difference: Dihok.rows[maxMonth].monthly_pop_avg_int - Dihok.rows[minMonth].monthly_pop_avg_int};
-
 
           var AvgMonthlyRefugeePopDiff = [
             {
@@ -362,104 +431,170 @@
 
             for(var i =0; i<4; i++)
             {
-
-              /*//.008
-//.013
-//.021
-//.028
-//.044 *
-//.054
-//1*/
-                if(AvgMonthlyRefugeePopDiff[i].diffInMonths <= -799)
+                if(AvgMonthlyRefugeePopDiff[i].diffInMonths <= -801)
                 {
-                     AvgMonthlyRefugeePopDiff[i].hexColor = '#0000FF';
-                     AvgMonthlyRefugeePopDiff[i].opacity =  1;
+                     // AvgMonthlyRefugeePopDiff[i].hexColor = '#0000FF';
+                     // AvgMonthlyRefugeePopDiff[i].opacity =  1;
+                     // AvgMonthlyRefugeePopDiff[i].hsla = 'hsla(231, 95%, 25%, 1)';
+                     AvgMonthlyRefugeePopDiff[i].hsla = blue5;
                 }
-                else if(AvgMonthlyRefugeePopDiff[i].diffInMonths <= -599)
+                else if(AvgMonthlyRefugeePopDiff[i].diffInMonths <= -600)
                 {
-                     AvgMonthlyRefugeePopDiff[i].hexColor = '#0000FF';
-                     AvgMonthlyRefugeePopDiff[i].opacity =  .028;
+                     // AvgMonthlyRefugeePopDiff[i].hexColor = '#0000FF';
+                     // AvgMonthlyRefugeePopDiff[i].opacity =  .028;
+                     // AvgMonthlyRefugeePopDiff[i].hsla = 'hsla(231, 95%, 45%, 0.92)';
+                     AvgMonthlyRefugeePopDiff[i].hsla = blue4;
                 }
-                else if (AvgMonthlyRefugeePopDiff[i].diffInMonths <= -399)
+                else if (AvgMonthlyRefugeePopDiff[i].diffInMonths <= -400)
                 {
-                     AvgMonthlyRefugeePopDiff[i].hexColor = '#0000FF';
-                     AvgMonthlyRefugeePopDiff[i].opacity = .021;/*.07 increments*/
+                     // AvgMonthlyRefugeePopDiff[i].hexColor = '#0000FF';
+                     // AvgMonthlyRefugeePopDiff[i].opacity = .021;/
+                     // AvgMonthlyRefugeePopDiff[i].hsla = 'hsla(231, 95%, 55%, 0.85)';
+                     AvgMonthlyRefugeePopDiff[i].hsla = blue3;
                 }
-                else if(AvgMonthlyRefugeePopDiff[i].diffInMonths <= -199)
+                else if(AvgMonthlyRefugeePopDiff[i].diffInMonths <= -200)
                 {
-                     AvgMonthlyRefugeePopDiff[i].hexColor = '#0000FF';
-                     AvgMonthlyRefugeePopDiff[i].opacity =  .013;
+                     // AvgMonthlyRefugeePopDiff[i].hexColor = '#0000FF';
+                     // AvgMonthlyRefugeePopDiff[i].opacity =  .013;
+                     // AvgMonthlyRefugeePopDiff[i].hsla = 'hsla(231, 95%, 65%, 0.75)';
+                     AvgMonthlyRefugeePopDiff[i].hsla = blue2;
                 }
-                else if(AvgMonthlyRefugeePopDiff[i].diffInMonths <= -1)
+                else if(AvgMonthlyRefugeePopDiff[i].diffInMonths <= 0)
                 {
-                     AvgMonthlyRefugeePopDiff[i].hexColor = '#0000FF';
-                     AvgMonthlyRefugeePopDiff[i].opacity =  .008;
+                     // AvgMonthlyRefugeePopDiff[i].hexColor = '#0000FF';
+                     // AvgMonthlyRefugeePopDiff[i].opacity =  .008;
+                     // AvgMonthlyRefugeePopDiff[i].hsla = 'hsla(231, 95%, 75%, 0.66)';
+                     AvgMonthlyRefugeePopDiff[i].hsla = blue1;
                 }
                 else if(AvgMonthlyRefugeePopDiff[i].diffInMonths <= 1999)
                 {
-                     AvgMonthlyRefugeePopDiff[i].hexColor = '#FF0000';
-                     AvgMonthlyRefugeePopDiff[i].opacity = .008;
+                     // AvgMonthlyRefugeePopDiff[i].hexColor = '#FF0000';
+                     // AvgMonthlyRefugeePopDiff[i].opacity = .008;
+                     // AvgMonthlyRefugeePopDiff[i].hsla = 'hsla(360, 55%, 75%, 0.62)';
+                     AvgMonthlyRefugeePopDiff[i].hsla = red1;
                 }
                 else if(AvgMonthlyRefugeePopDiff[i].diffInMonths <= 3999)
                  {
-                     AvgMonthlyRefugeePopDiff[i].hexColor = '#FF0000';
-                     AvgMonthlyRefugeePopDiff[i].opacity = .013;
+                     // AvgMonthlyRefugeePopDiff[i].hexColor = '#FF0000';
+                     // AvgMonthlyRefugeePopDiff[i].opacity = .013;
+                     // AvgMonthlyRefugeePopDiff[i].hsla = 'hsla(360, 55%, 55%, 0.68)';
+                     AvgMonthlyRefugeePopDiff[i].hsla = red2;
                 }
                 else if(AvgMonthlyRefugeePopDiff[i].diffInMonths <= 5999)
                 {
-                     AvgMonthlyRefugeePopDiff[i].hexColor = '#FF0000';
-                     AvgMonthlyRefugeePopDiff[i].opacity = .021;
+                     // AvgMonthlyRefugeePopDiff[i].hexColor = '#FF0000';
+                     // AvgMonthlyRefugeePopDiff[i].opacity = .021;
+                     // AvgMonthlyRefugeePopDiff[i].hsla = 'hsla(360, 65%, 55%, 0.75)';
+                     AvgMonthlyRefugeePopDiff[i].hsla = red3;
                 }
                 else if(AvgMonthlyRefugeePopDiff[i].diffInMonths <= 7999)
                 {
-                     AvgMonthlyRefugeePopDiff[i].hexColor = '#FF0000';
-                     AvgMonthlyRefugeePopDiff[i].opacity = .028;
+                     // AvgMonthlyRefugeePopDiff[i].hexColor = '#FF0000';
+                     // AvgMonthlyRefugeePopDiff[i].opacity = .028;
+                     // AvgMonthlyRefugeePopDiff[i].hsla = 'hsla(360, 75%, 45%, 0.83)';
+                     AvgMonthlyRefugeePopDiff[i].hsla = red4;
                 }
-                else if(AvgMonthlyRefugeePopDiff[i].diffInMonths <= 9999)
+                else if(AvgMonthlyRefugeePopDiff[i].diffInMonths <= 10000)
                 {
-                     AvgMonthlyRefugeePopDiff[i].hexColor = '#FF0000';
-                     AvgMonthlyRefugeePopDiff[i].opacity = .054;
+                     // AvgMonthlyRefugeePopDiff[i].hexColor = '#FF0000';
+                     // AvgMonthlyRefugeePopDiff[i].opacity = .054;
+                     // AvgMonthlyRefugeePopDiff[i].hsla = 'hsla(360, 85%, 35%, 0.91)';
+                     AvgMonthlyRefugeePopDiff[i].hsla = red5;
                 }
                 else if(AvgMonthlyRefugeePopDiff[i].diffInMonths > 10000)
                 {
-                     AvgMonthlyRefugeePopDiff[i].hexColor = '#FF0000';
-                     AvgMonthlyRefugeePopDiff[i].opacity = 1;
+                     // AvgMonthlyRefugeePopDiff[i].hexColor = '#FF0000';
+                     // AvgMonthlyRefugeePopDiff[i].opacity = 1;
+                     // AvgMonthlyRefugeePopDiff[i].hsla = 'hsla(360, 95%, 25%, 1)';
+                     AvgMonthlyRefugeePopDiff[i].hsla = red6;
                 }
              }
 
-
-          RefugeePopulationLayer.setCartoCSS("#sulaymaniyah_anbar_erbil_duhok_ver3[governorate= '" + AvgMonthlyRefugeePopDiff[0].governorate + "']{ polygon-fill: " + AvgMonthlyRefugeePopDiff[0].hexColor + ";polygon-opacity: " + AvgMonthlyRefugeePopDiff[0].opacity + "; }[governorate='" + AvgMonthlyRefugeePopDiff[1].governorate + "']{ polygon-fill: " + AvgMonthlyRefugeePopDiff[1].hexColor + ";polygon-opacity: " + AvgMonthlyRefugeePopDiff[1].opacity + ";}[governorate= '" + AvgMonthlyRefugeePopDiff[2].governorate + "']{ polygon-fill: " + AvgMonthlyRefugeePopDiff[2].hexColor + ";polygon-opacity: " + AvgMonthlyRefugeePopDiff[2].opacity + ";}[governorate= '" + AvgMonthlyRefugeePopDiff[3].governorate + "']{ polygon-fill: " + AvgMonthlyRefugeePopDiff[3].hexColor + ";polygon-opacity: " + AvgMonthlyRefugeePopDiff[3].opacity + ";}");
-
+RefugeePopulationLayer.setCartoCSS("#sulaymaniyah_anbar_erbil_duhok_ver3[governorate='" + AvgMonthlyRefugeePopDiff[0].governorate + "']{polygon-fill: " + AvgMonthlyRefugeePopDiff[0].hsla + "; line-color: " + line_color + "; line-width: " + line_width + ";}[governorate='" + AvgMonthlyRefugeePopDiff[1].governorate + "']{polygon-fill: " + AvgMonthlyRefugeePopDiff[1].hsla + "; line-color: " + line_color + "; line-width: " + line_width + ";}[governorate='" + AvgMonthlyRefugeePopDiff[2].governorate + "']{polygon-fill: " + AvgMonthlyRefugeePopDiff[2].hsla + "; line-color: " + line_color + "; line-width: " + line_width + ";}[governorate='" + AvgMonthlyRefugeePopDiff[3].governorate + "']{polygon-fill: " + AvgMonthlyRefugeePopDiff[3].hsla + "; line-color: " + line_color + "; line-width: " + line_width + ";}");
 
 
 
+          EventsLayer.setSQL("SELECT * FROM syria_timeline_28coordinates_only_29_ver3 WHERE EXTRACT(YEAR from date) = 2013 AND (EXTRACT(MONTH from date) = " + minMonth + " OR EXTRACT(MONTH from date) = " + maxMonth + ")");
 
 
 
-          /*
-                if negative
+        $('#events').empty();
+
+        if(SyriaEventsJSON.rows[minMonth].the_geom==null)
+        {
+              $('#events').append(monthNumberToWord(minMonth) + ":  " +SyriaEventsJSON.rows[minMonth].event_short_discription + "</br></br>");
+        }
+
+        if(SyriaEventsJSON.rows[maxMonth].the_geom==null)
+        {
+          $('#events').append(monthNumberToWord(maxMonth) + ":  " + SyriaEventsJSON.rows[maxMonth].event_short_discription);
+        }
 
 
+        function monthNumberToWord(value)
+        {
+            switch(value)
+            {
+              case 0:
+              return "January";
+              break;
 
-          */
+              case 1:
+              return "February";
+              break;
 
+              case 2:
+              return "March";
+              break;
+
+              case 3:
+              return "April";
+              break;
+
+              case 4:
+              return "May";
+              break;
+
+              case 5:
+              return "June";
+              break;
+
+              case 6:
+              return "July";
+              break;
+
+              case 7:
+              return "August";
+              break;
+
+              case 8:
+              return "September";
+              break;
+
+              case 9:
+              return "October";
+              break;
+
+              case 10:
+              return "November";
+              break;
+
+              case 11:
+              return "December";
+              break;
+            }
+        }
 
 
 
           for(var x=0; x<4; x++)
            {
-              console.log('Governorate = ' + AvgMonthlyRefugeePopDiff[x].governorate + '; Difference = ' + AvgMonthlyRefugeePopDiff[x].diffInMonths + '; Color = ' + AvgMonthlyRefugeePopDiff[x].hexColor + '; Opacity =  ' + AvgMonthlyRefugeePopDiff[x].opacity);
+              console.log('Governorate = ' + AvgMonthlyRefugeePopDiff[x].governorate + '; Difference = ' + AvgMonthlyRefugeePopDiff[x].diffInMonths + '; Color = ' + AvgMonthlyRefugeePopDiff[x].hsla);
            }
 
-// -3000 to -2001 #00bbff
-// -2000 to -1001 #00ccff
-// -1000 to -1 #00ddff
-// 0 #ffffff
-// 1 to 9,999  #6f0000
-// 10,000 to 24,999 #5c0000
-// 25,000 to 39,999 #490000
-// 40,000 to 54,999 #360000
-// 55,000 to 62,172 #000000
+
+
+
 
 
 
@@ -484,6 +619,50 @@
 /*-------------------------------END: EVENT HANDLERS------------------------------------------------------------*/
 
 
+function generateSlider()
+{
+
+  var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
+
+        /*Add Date Range Slider with the following options*/
+        $("#slider").dateRangeSlider(
+        {
+            valueLabels: "hide",
+            defaultValues:
+            {
+                min: new Date(2013, 0),
+                max: new Date(2013, 2, 1)
+            },
+            bounds:
+            {
+                min: new Date(2013, 0),
+                max: new Date(2013, 12, 1)
+            },
+            step:
+            {
+                months: 1
+            },
+            /*The option scales requires an array of objects. Each object represents the configuration of one level.
+            Scale configuration object can contain 5 functions:*/
+            scales:
+            [{
+                //first: function(value){ return value; },
+                //end: function(value) {return value; },
+                next: function(value)
+                {
+                    var next = new Date(value);
+                    return new Date(next.setMonth(value.getMonth() + 1));
+                },
+                label: function(value)
+                {
+                    return months[value.getMonth()];
+                }/*,
+                format: function(tickContainer, tickStart, tickEnd){
+                  tickContainer.addClass("myCustomClass");
+                }*/
+            }]
+        });
+}
 
 
     </script>
