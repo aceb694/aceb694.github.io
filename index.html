@@ -35,128 +35,132 @@
 
   <style>
 
-  html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    width: 100%;
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 25px;
+      width: 100%;
+    }
+
+
+
+    #map {
+      position: relative;
+      z-index: 1;
+      display: inline-block;
+      float: left;
+      height: 75%;
+      width: 60%;
+      zoom: .8;
   }
 
 
+      #slider {
+          position: absolute;
+          z-index: 2;
+          bottom: 40px;
+          right: 40px;
+          left:40px;
+          width: 80%;
+        }
 
-  #map {
-    position: relative;
-    z-index: 1;
-    display: inline-block;
-    float: left;
-    height: 100%;
-    width: 60%;
-}
+       
 
 
-    #slider {
-        position: absolute;
-        z-index: 2;
-        bottom: 40px;
-        right: 40px;
-        left:40px;
-        width: 80%;
-      }
+        #legends
+        {
+             float: left;
+             width: 19%;
+             border: 1px solid #999;
+             margin-left: 1%;
+
+        }
 
         #events
-      {
-         float: left;
-         display: inline-block;
-         z-index: 4;
-         width: 20%;
-         height: 29%;
-         color: black;
-         font-family: monospace;
-         margin-left: 1%;
-         margin-right: 1%;
-         margin-top: 1%;
-      }
-
-
-      #legends
-      {
+        {
            float: left;
-           width: 19%;
-           border: 1px solid #999;
-          margin: 1%;
-      }
+           display: inline-block;
+           z-index: 4;
+           width: 20%;
+           height: 29%;
+           color: black;
+           font-family: monospace;
+           margin-left: 1%;
+           margin-right: 1%;
+           margin-top: 1%;
+        }
 
-      div.cartodb-legend.density ul
-      {
-          min-width: 100%;
-      }
+        div.cartodb-legend.density ul
+        {
+            min-width: 100%;
+        }
 
-      div.cartodb-legend .legend-title {
-            margin: 1%;
-      }
+        div.cartodb-legend .legend-title {
+              margin: 1%;
+        }
 
 
 
-     div.cartodb-legend.density{
-         float: left;
-         box-shadow: none;
-         border: none;
-         position: static;
-         height: 30%;
-         width: 89%;
-         padding: 4%;
-     }
+       div.cartodb-legend.density{
+           float: left;
+           box-shadow: none;
+           border: none;
+           position: static;
+           height: 30%;
+           width: 89%;
+           padding: 4%;
+       }
 
-     #title{
-        display: inline-block;
-        padding: 5px 5px 0 5px;
-        font-family: monospace;
-        width: 60%;
-        font-size: 26px;
-        display: inline-block;
-     }
+       #title{
+          display: inline-block;
+          padding: 5px 5px 0 5px;
+          font-family: monospace;
+          width: 60%;
+          font-size: 26px;
+          display: inline-block;
+       }
 
-     #sub_heading{
-        display: inline-block;
-        padding: 5px 5px 0 5px;
-        font-family: monospace;
-        width: 60%;
-        font-size: 16px;
-        display: inline-block;
-     }
+       #sub_heading{
+          display: inline-block;
+          padding: 5px 5px 0 5px;
+          font-family: monospace;
+          width: 60%;
+          font-size: 16px;
+          display: inline-block;
+       }
 
-#title2{
-  display: inline-block;
-  width: 100%;
-  margin-top: 15px;
-  padding-bottom: 5px;
-}
-
-bullet{
-    width: 5px;
-    height: 5px;
-    margin-bottom: 2px;
-    margin-right: 10px;
-    background: black;
+  #title2{
     display: inline-block;
-    border-radius: 15px;
-}
+    width: 100%;
+    margin-top: 15px;
+    padding-bottom: 5px;
+  }
 
-#title2 {
-  margin-left: 10px;
-}
+  bullet{
+      width: 5px;
+      height: 5px;
+      margin-bottom: 2px;
+      margin-right: 10px;
+      background: black;
+      display: inline-block;
+      border-radius: 15px;
+  }
 
-#text {
-  margin-left: 10px;
-}
+  #title2 {
+    margin-left: 10px;
+  }
 
-bullet{
-  margin-left: 10px;
-}
+  #text {
+    margin-left: 10px;
+  }
 
-#bodyContainer{
-  width: 80%;
-}
+  bullet{
+    margin-left: 10px;
+  }
+
+  #bodyContainer{
+    width: 80%;
+  }
 
 
 
@@ -168,24 +172,34 @@ bullet{
 
 
     <div id="title">
-      2013 Syrian Refugees Not Residing in Camps within Iraq Governorates of Dihok, Arbil, As-Sulaymaniyah and Al-Anbar
+      2013 Non-Camp Syrian Refugees within Iraq Governorates: Dihok, Arbil, As-Sulaymaniyah and Al-Anbar
     </div>
 
     <div id="sub_heading">
-    Move the slider to see each governorate's population increase or decrease between the two months. Click on the black points to read about events occuring during the two months selected.
+    Move the slider to see the refugee population change between the two selected months. Click on the black points to read about events occuring during the two months selected.
     </div>
 
 
     <div id="map">
             <div id="slider"></div>
     </div>
-    <div id="events"></div>
+    
     <div id="legends"></div>
+    <div id="events"></div>
 
 <div id="bodyContainer">
-                 <div id="title2"><b>About the Mapmaker:</b></div>
-                 <div id="text">My name is Ben and I am currently a student in the M.A. International Affairs at The New School in New York City. I am committed to better understanding situations affecting the world's refugees and helping others to do the same. To that end, I have created this map to better understand how Syrian civil war events impacted non-camp refugee populations within four governorates in Iraq. </div>
-
+                 <div id="title2"><b>Map Motivation:</b></div>
+                 <div id="text">My name is Ben and I am currently studying international affairs at The New School in New York City. Academically, I am committed to better understanding the unique challenges faced by refugee populations around the world and to help others do the same. To that end, I built the 'Syria Non-Camp Refugee Map' for my final project in the Advanced GIS class I took spring of 2015. I chose to map the Syria Crisis first, because it is one of several recent refugee crises that I hoped to better understand and second, because it is recent, there is a greater chance that my map may positively impact those affected, if it helps provide new insight to humanitarian professionals working to provide relief to Syrian refugees.</div>
+                 </br>
+         <div id="title2"><b>Abstract:</b></div>
+                 <div id="text"><i>Syria Crises Background: </i>Anti-government demonstrations, part of the Arab Spring, turned violent in 2011 after violent government crackdown incited rebels to fight back, ultimately displacing eleven-million people. International development agency, Mercy Corps, has called the Syria Crisis 'the worst humanitarian disaster of our time.' 
+                 </br></br>
+                 <i>Map Goal: </i>The goal of the map is to allow viewers to see the direct impact of violent events, part of the Syria Crisis, on non-camp refugee populations in the four governorates displayed in neighboring Iraq during 2013, the crisis' most violent year.
+                 </br></br>
+                 <i>Usage Summary: </i>As the viewer moves the time slider, a black dot appears over each Syrian city where an event occurred during the two months selected; events are described to the right of the map below the legend. The shading of each governorate signifies an increase (red shading) or a decrease (blue shading) in the governorate's non-camp refugee population between the two months selected. 
+                 </br>
+                 </div>
+                 </br>
                  <div id="title2"><b>Methodology:</b></div>
                  <div id="text"><i>Manipulating Refugee Population Data:</i> Acquired daily non-camp refugee population values (UNHCR), beginning in 2011, for Dihok, Arbil, As-Sulaymaniyah and Al-Anbar governorates then used SQL to merge the four data sets into a single table representing the 2013 monthly averages of each governorate.</br></br>
                           <i>Creating Event Timeline:</i></br>
@@ -196,10 +210,14 @@ bullet{
                           2. setCartoCSS() updates polygon-fill to visualize the governorate's refugee increase or decrease.</br>
                           3. setSQL() selects events occurring within the two months chosen and displays them as points over the Syrian city they occurred in or to the right if the event did not occur within a city.</br>
                           </div>
-
-                        <div id="title2"><b>Data Sources:</b></div>
-                          <div id="text"><bullet></bullet>UNHCR: <i>http://data.unhcr.org/syrianrefugees/regional.php</i></br><bullet></bullet>Washington Post: <i>http://apps.washingtonpost.com/g/page/world/timeline-unrest-in-syria/207/</i></br><bullet></bullet>Aljazeera: <i>http://www.aljazeera.com/indepth/interactive/2012/02/201225111654512841.html</i>
-                          </div>
+                </br>
+                <div id="title2"><b>Limitations:</b></div>
+                <div id="text">Originally, I intended to map Syrian refugees in all neighboring countries but data and time limitations required narrowing the project scope. Therefore, I first chose to map the Syrian refugee population in Iraq because the population there is large (242,500) yet often less discussed and overshadowed by that of Turkey, which has the largest Syrian refugee population. I then chose to display non-camp refugee populations in the four Iraq governorates of Dihok, Arbil, As-Sulaymaniyah and Al-Anbar for two reasons. First, I was able to greatly simplify the project by using non-camp refugee populations which were tied to a few governorates, instead of the populations of the greater number of refugee camps. Second, these four governorates had complete monthly statistics for non-camp populations during my focus year of 2013, while the others did not.
+                </div>
+                </br>
+                <div id="title2"><b>Data Sources:</b></div>
+                <div id="text"><bullet></bullet>UNHCR: <i>http://data.unhcr.org/syrianrefugees/regional.php</i></br><bullet></bullet>Washington Post: <i>http://apps.washingtonpost.com/g/page/world/timeline-unrest-in-syria/207/</i></br><bullet></bullet>Aljazeera: <i>http://www.aljazeera.com/indepth/interactive/2012/02/201225111654512841.html</i>
+                </div>
 </div>
 
 
@@ -234,6 +252,9 @@ bullet{
 
 
          var RefugeePopulationLayer;
+
+          
+
          var EventsLayer;
 
         var blue5 = 'hsla(231, 95%, 25%, 1)';
@@ -252,14 +273,6 @@ bullet{
         var line_color = 'white';
         var line_width = .5;
 
-      //   var layerSource = {
-      //   user_name: 'aceb694',
-      //   type: 'cartodb',
-      //   sublayers: [{
-      //       sql: "SELECT * FROM sulaymaniyah_anbar_erbil_duhok_ver3", // African countries
-      //       cartocss: '#sulaymaniyah_anbar_erbil_duhok_ver3{polygon-fill:#FF6600;polygon-opacity:0.7;line-color:#FFF;line-width:1;line-opacity:1;}'
-      //   }]
-      // }
 
          /*------------------------------END: DECLARE GLOBAL VARIABLES------------------------------------------------------------*/
 
@@ -301,8 +314,21 @@ bullet{
         $.getJSON('https://aceb694.cartodb.com/api/v2/sql?q=SELECT%20*%20FROM%20syria_timeline_28coordinates_only_29_ver3%20WHERE EXTRACT(YEAR from%20date)%20=%202013')
         .done(function (JSONarray)
         {
-          SyriaEventsJSON =  JSONarray;
+             SyriaEventsJSON =  JSONarray;
+
+             /*construct MinMaxSliderValues array manually and pass to PostSyriaEventsJSONtoPage so events will list on page load, later values in MinMaxSliderValues are pulled from the slider based on the slier position*/
+             var MinMaxSliderValues = new Object();
+
+             MinMaxSliderValues.minMonth_ArrayAccess = 0;
+             MinMaxSliderValues.maxMonth_ArrayAccess = 1;
+
+           MinMaxSliderValues.minMonth_NumericalMonth = 1;
+           MinMaxSliderValues.maxMonth_NumericalMonth = 2;
+
+             PostSyriaEventsJSONtoPage(MinMaxSliderValues);
         })
+
+
 
     });
 /*-------------------------------END: PULL DATA FROM DATABASE------------------------------------------------------------*/
@@ -316,79 +342,52 @@ bullet{
 
 /*-------------------------------START: LOAD CARTODB MAP------------------------------------------------------------*/
 
+
     $(document).ready(function ()
     {
-       // var map = L.map('map', {
-       //      zoomControl: false,
-       //      center: [43, 0],
-       //      zoom: 3
-       // })
-
-
-
-
 
         cartodb.createVis('map', 'https://aceb694.cartodb.com/api/v2/viz/84796788-fd7e-11e4-a92a-0e9d821ea90d/viz.json',
         {
             cartodb_logo: false,
             legends: false,
             search: false,
-            shareable: false
+            shareable: false,
+            center_lat: 33.366759,
+            center_lon: 40.630560,
+            infowindow: true
         }).done(function(vis,layers)
         {
 
 
-
-            // alert("Layers has " + layers.length + " layers.");
-
-            RefugeePopulationLayer = layers[1].getSubLayer(0);
-
-
-            EventsLayer = layers[1].getSubLayer(1);
-
-
-            // console.log(EventsLayer.getCartoCSS());
-
-            // alert("Layers has " + layers[1].getSubLayerCount() + " sublayers.");
-
-        })
-
           generateSlider();
 
-              var densityLegendIncrease = new cdb.geo.ui.Legend.Density(
-                  {
-                      title: "Refugee Population Increase",
-                      left: "0", right: ">10000", colors: [ red1, red2, red3, red4, red5, red6 ]
-                  });
-
-                $('#legends').append(densityLegendIncrease.render().el);
+            RefugeePopulationLayer = layers[1].getSubLayer(0);   //default valus are set in cartodb, if layer loads blank make sure cartodb map is set
 
 
+            EventsLayer = layers[1].getSubLayer(1); //default valus are set in cartodb, if layer loads blank make sure cartodb map is set
+
+        });
+              
+    var densityLegendIncrease = new cdb.geo.ui.Legend.Density(
+    {
+      title: "Refugee Population Increase",
+      left: "0", right: ">10000", colors: [ red1, red2, red3, red4, red5, red6 ]
+    });
+
+    $('#legends').append(densityLegendIncrease.render().el);
 
 
-            var densityLegendDecrease = new cdb.geo.ui.Legend.Density({
-                title: "Refugee Population Decrease",
-                left: "0", right: ">800", colors: [ blue1, blue2, blue3, blue4, blue5 ]
-              });
-
-                 $('#legends').append(densityLegendDecrease.render().el);
 
 
-                 // $('div.quartile').css("background", function(value){
-                 //        return .013;
-                 //  } );
+    var densityLegendDecrease = new cdb.geo.ui.Legend.Density({
+        title: "Refugee Population Decrease",
+        left: "0", right: ">800", colors: [ blue1, blue2, blue3, blue4, blue5 ]
+    });
 
-
-        // var densityLegend = new cdb.geo.ui.Legend.Density({
-        //     title: "Density Legend",
-        //     left: "0", right: "10", colors: [ "#58A062", "#F07971", "#54BFDE", "#9BC562", "#FABB5C" ]
-        //   });
+    $('#legends').append(densityLegendDecrease.render().el);
 
     });
 
-    //
-
-    //
 
 /*-------------------------------END: LOAD CARTODB MAP------------------------------------------------------------*/
 
@@ -412,40 +411,134 @@ bullet{
           console.log(Arbil);
           console.log(Dihok);
 
+          var MinMaxSliderValues = getMinMaxMonth(e, sliderData);  //retrieve left and right slider values
+
+          //console.log('line 548: minMonth = ' + MinMaxSliderValues.minMonth + ', maxMonth = ' + MinMaxSliderValues.maxMonth);
+
+          var AvgMonthlyRefugeePopDiff = CalculateRefugeePopDifferences(MinMaxSliderValues);
+
+          console.log(AvgMonthlyRefugeePopDiff);
+
+          //console.log('line 552: ' + AvgMonthlyRefugeePopDiff);
+
+          setCSSandEvents(MinMaxSliderValues, AvgMonthlyRefugeePopDiff);
+
+      });
 
 
 
-          var minMonth = sliderData.values.min.getMonth();  //retrieve the month the left most slider is on
+/*-------------------------------END: EVENT HANDLERS------------------------------------------------------------*/
 
 
-          if(sliderData.values.max.getMonth() == 0)
-              maxMonth = 11; /*because the slider value is 0 when it is selecting december, and it should be 11 because december data is in the array element 11*/
-          else
-              maxMonth =  sliderData.values.max.getMonth() - 1; //select the month the right most slider is on
+/*-------------------------------END: FUNCTION START------------------------------------------------------------*/
 
-          console.log('min value: ' + minMonth + ', max value: ' + maxMonth);
 
-          var AvgMonthlyRefugeePopDiff = [
+function generateSlider()
+{
+
+  var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
+
+        /*Add Date Range Slider with the following options*/
+        $("#slider").dateRangeSlider(
+        {
+            valueLabels: "hide",
+            defaultValues:
             {
-              governorate: "Al-Anbar",
-              diffInMonths: Al_Anbar.rows[maxMonth].monthly_pop_avg_int - Al_Anbar.rows[minMonth].monthly_pop_avg_int,
+                min: new Date(2013, 0),
+                max: new Date(2013, 2, 1)
             },
+            bounds:
             {
-              governorate: "As-Sulaymaniyah",
-              diffInMonths: As_Sulaymaniyah.rows[maxMonth].monthly_pop_avg_int - As_Sulaymaniyah.rows[minMonth].monthly_pop_avg_int
+                min: new Date(2013, 0),
+                max: new Date(2013, 12, 1)
             },
+            step:
             {
-              governorate: "Arbil",
-              diffInMonths: Arbil.rows[maxMonth].monthly_pop_avg_int - Arbil.rows[minMonth].monthly_pop_avg_int
+                months: 1
             },
-            {
-              governorate: "Dihok",
-              diffInMonths: Dihok.rows[maxMonth].monthly_pop_avg_int - Dihok.rows[minMonth].monthly_pop_avg_int
-            }];
+            /*The option scales requires an array of objects. Each object represents the configuration of one level.
+            Scale configuration object can contain 5 functions:*/
+            scales:
+            [{
+                //first: function(value){ return value; },
+                //end: function(value) {return value; },
+                next: function(value)
+                {
+                    var next = new Date(value);
+                    return new Date(next.setMonth(value.getMonth() + 1));
+                },
+                label: function(value)
+                {
+                    return months[value.getMonth()];
+                }/*,
+                format: function(tickContainer, tickStart, tickEnd){
+                  tickContainer.addClass("myCustomClass");
+                }*/
+            }]
+        });
+}
 
 
+function getMinMaxMonth(e, sliderData)
+{
 
-            for(var i =0; i<4; i++)
+      var MinMaxSliderValues = new Object();
+
+      
+      /*console.log('in Get MinMaxFunction before storing max value, minMonth = ' + sliderData.values.min.getMonth() + ', maxMonth = ' + sliderData.values.max.getMonth());*/
+
+      MinMaxSliderValues.minMonth_ArrayAccess = sliderData.values.min.getMonth();  //retrieve the month the left most slider is on, if it is January value will be 0 and therefore suitable for accessing the Januaryith element in the local array
+
+      MinMaxSliderValues.minMonth_NumericalMonth = sliderData.values.min.getMonth() + 1; //because it will be 0 if January is selected it must be incremented so that 1 is used for January when querying the SQL table
+      
+
+      if(sliderData.values.max.getMonth() == 0)
+      {
+          MinMaxSliderValues.maxMonth_ArrayAccess = 11; /*because the slider value is 0 when it is selecting december, and it should be 11 because december data is in the array element 11*/
+          MinMaxSliderValues.maxMonth_NumericalMonth = 12; //If max slider returns 0 it is on Decmeber and December value must be 12 when querying the SQL table
+      }
+      else
+      {
+          MinMaxSliderValues.maxMonth_ArrayAccess =  sliderData.values.max.getMonth() - 1; //ex: maxslider value returnes 2 by default when on February but should be 1 when addressing February the second month which is the second array element 
+          MinMaxSliderValues.maxMonth_NumericalMonth = sliderData.values.max.getMonth(); //ex: max slider returns 2 by default it is on February and this is the value that needs to be used when querying Februaryth array elements
+      }
+
+      
+      console.log('Array Access Values, minMonth = ' + MinMaxSliderValues.minMonth_ArrayAccess + ', maxMonth = ' + MinMaxSliderValues.maxMonth_ArrayAccess);
+      console.log('SQL Access Values, minMonth = ' + MinMaxSliderValues.minMonth_NumericalMonth + ', maxMonth = ' + MinMaxSliderValues.maxMonth_NumericalMonth);
+
+      return MinMaxSliderValues;
+}
+
+
+function CalculateRefugeePopDifferences(MinMaxSliderValues)
+{
+
+
+  return AvgMonthlyRefugeePopDiff = [
+  {
+    governorate: "Al-Anbar",
+    diffInMonths: Al_Anbar.rows[MinMaxSliderValues.maxMonth_ArrayAccess].monthly_pop_avg_int - Al_Anbar.rows[MinMaxSliderValues.minMonth_ArrayAccess].monthly_pop_avg_int,
+  },
+  {
+    governorate: "As-Sulaymaniyah",
+    diffInMonths: As_Sulaymaniyah.rows[MinMaxSliderValues.maxMonth_ArrayAccess].monthly_pop_avg_int - As_Sulaymaniyah.rows[MinMaxSliderValues.minMonth_ArrayAccess].monthly_pop_avg_int
+  },
+  {
+    governorate: "Arbil",
+    diffInMonths: Arbil.rows[MinMaxSliderValues.maxMonth_ArrayAccess].monthly_pop_avg_int - Arbil.rows[MinMaxSliderValues.minMonth_ArrayAccess].monthly_pop_avg_int
+  },
+  {
+    governorate: "Dihok",
+    diffInMonths: Dihok.rows[MinMaxSliderValues.maxMonth_ArrayAccess].monthly_pop_avg_int - Dihok.rows[MinMaxSliderValues.minMonth_ArrayAccess].monthly_pop_avg_int
+  }];
+}
+
+
+function setCSSandEvents(MinMaxSliderValues, AvgMonthlyRefugeePopDiff)
+{
+
+          for(var i =0; i<4; i++)
             {
                 if(AvgMonthlyRefugeePopDiff[i].diffInMonths <= -801)
                 {
@@ -526,163 +619,101 @@ bullet{
                 }
              }
 
-// RefugeePopulationLayer.setCartoCSS("#sulaymaniyah_anbar_erbil_duhok_ver3[governorate='" + AvgMonthlyRefugeePopDiff[0].governorate + "']{polygon-fill: " + AvgMonthlyRefugeePopDiff[0].hsla + "; line-color: " + line_color + "; line-width: " + line_width + ";}[governorate='" + AvgMonthlyRefugeePopDiff[1].governorate + "']{polygon-fill: " + AvgMonthlyRefugeePopDiff[1].hsla + "; line-color: " + line_color + "; line-width: " + line_width + ";}[governorate='" + AvgMonthlyRefugeePopDiff[2].governorate + "']{polygon-fill: " + AvgMonthlyRefugeePopDiff[2].hsla + "; line-color: " + line_color + "; line-width: " + line_width + ";}[governorate='" + AvgMonthlyRefugeePopDiff[3].governorate + "']{polygon-fill: " + AvgMonthlyRefugeePopDiff[3].hsla + "; line-color: " + line_color + "; line-width: " + line_width + ";}");
+  RefugeePopulationLayer.set({sql: "SELECT * FROM sulaymaniyah_anbar_erbil_duhok_ver3 WHERE year = 2013 AND month = " + MinMaxSliderValues.maxMonth_NumericalMonth,
+    cartocss: "#sulaymaniyah_anbar_erbil_duhok_ver3[governorate='" + AvgMonthlyRefugeePopDiff[0].governorate + "']{polygon-fill: " + AvgMonthlyRefugeePopDiff[0].hsla + "; line-color: " + line_color + "; line-width: " + line_width + ";}[governorate='" + AvgMonthlyRefugeePopDiff[1].governorate + "']{polygon-fill: " + AvgMonthlyRefugeePopDiff[1].hsla + "; line-color: " + line_color + "; line-width: " + line_width + ";}[governorate='" + AvgMonthlyRefugeePopDiff[2].governorate + "']{polygon-fill: " + AvgMonthlyRefugeePopDiff[2].hsla + "; line-color: " + line_color + "; line-width: " + line_width + ";}[governorate='" + AvgMonthlyRefugeePopDiff[3].governorate + "']{polygon-fill: " + AvgMonthlyRefugeePopDiff[3].hsla + "; line-color: " + line_color + "; line-width: " + line_width + ";}"});
 
-RefugeePopulationLayer.set({sql: "SELECT * FROM sulaymaniyah_anbar_erbil_duhok_ver3 WHERE year = 2013 AND month = " + ++maxMonth,
-  cartocss: "#sulaymaniyah_anbar_erbil_duhok_ver3[governorate='" + AvgMonthlyRefugeePopDiff[0].governorate + "']{polygon-fill: " + AvgMonthlyRefugeePopDiff[0].hsla + "; line-color: " + line_color + "; line-width: " + line_width + ";}[governorate='" + AvgMonthlyRefugeePopDiff[1].governorate + "']{polygon-fill: " + AvgMonthlyRefugeePopDiff[1].hsla + "; line-color: " + line_color + "; line-width: " + line_width + ";}[governorate='" + AvgMonthlyRefugeePopDiff[2].governorate + "']{polygon-fill: " + AvgMonthlyRefugeePopDiff[2].hsla + "; line-color: " + line_color + "; line-width: " + line_width + ";}[governorate='" + AvgMonthlyRefugeePopDiff[3].governorate + "']{polygon-fill: " + AvgMonthlyRefugeePopDiff[3].hsla + "; line-color: " + line_color + "; line-width: " + line_width + ";}"});
+      //var decrementMaxMonth = MinMaxSliderValues.maxMonth - 1; //used in the below 
 
-
-
-          EventsLayer.setSQL("SELECT * FROM syria_timeline_28coordinates_only_29_ver3 WHERE EXTRACT(YEAR from date) = 2013 AND (EXTRACT(MONTH from date) = " + minMonth + " OR EXTRACT(MONTH from date) = " + maxMonth + ")");
+          EventsLayer.setSQL("SELECT * FROM syria_timeline_28coordinates_only_29_ver3 WHERE EXTRACT(YEAR from date) = 2013 AND (EXTRACT(MONTH from date) = " + MinMaxSliderValues.minMonth_NumericalMonth + " OR EXTRACT(MONTH from date) = " + MinMaxSliderValues.maxMonth_NumericalMonth + ")");
 
 
 
         $('#events').empty();
 
-        if(SyriaEventsJSON.rows[minMonth].the_geom==null)
-        {
-              $('#events').append(monthNumberToWord(minMonth) + ":  " +SyriaEventsJSON.rows[minMonth].event_short_discription + "</br></br>");
-        }
+        //console.log('minMonth = ' + MinMaxSliderValues.minMonth + ', maxMonth = ' + MinMaxSliderValues.maxMonth);
 
-        if(SyriaEventsJSON.rows[maxMonth].the_geom==null)
-        {
-          $('#events').append(monthNumberToWord(maxMonth) + ":  " + SyriaEventsJSON.rows[maxMonth].event_short_discription);
-        }
-
-
-        function monthNumberToWord(value)
-        {
-            switch(value)
-            {
-              case 0:
-              return "January";
-              break;
-
-              case 1:
-              return "February";
-              break;
-
-              case 2:
-              return "March";
-              break;
-
-              case 3:
-              return "April";
-              break;
-
-              case 4:
-              return "May";
-              break;
-
-              case 5:
-              return "June";
-              break;
-
-              case 6:
-              return "July";
-              break;
-
-              case 7:
-              return "August";
-              break;
-
-              case 8:
-              return "September";
-              break;
-
-              case 9:
-              return "October";
-              break;
-
-              case 10:
-              return "November";
-              break;
-
-              case 11:
-              return "December";
-              break;
-            }
-        }
+        
+        //console.log('SyriaEventsJSON length = ' + SyriaEventsJSON.rows.length);
 
 
 
-          for(var x=0; x<4; x++)
-           {
-              console.log('Governorate = ' + AvgMonthlyRefugeePopDiff[x].governorate + '; Difference = ' + AvgMonthlyRefugeePopDiff[x].diffInMonths + '; Color = ' + AvgMonthlyRefugeePopDiff[x].hsla);
-           }
+        PostSyriaEventsJSONtoPage(MinMaxSliderValues);
 
-
-
-
-
-
-
-
-          // if(Arbil_difference>=0)
-          //   RefugeePopulationLayer.setCartoCSS("#sulaymaniyah_anbar_erbil_duhok_ver3 [governorate='Arbil']{ polygon-fill: #3E7BB6; }");
-          // else
-          //   RefugeePopulationLayer.setCartoCSS("#sulaymaniyah_anbar_erbil_duhok_ver3 [governorate='Arbil']{ polygon-fill: #870005; }");
-
-
-            // set({'cartocss': '#layer {...}' })
-
-            // alert("Sublayer CSS is " + RefugeePopulationLayer.getCartoCSS());
-            // alert("Sublayer SQL is " + RefugeePopulationLayer.getSQL());
-
-
-
-            // RefugeePopulationLayer.setCartoCSS("#sulaymaniyah_anbar_erbil_duhok_ver3 [governorate='As-Sulaymaniyah']{ polygon-fill: #3E7BB6; } [governorate='Arbil'] { polygon-fill: #870005; }");
-
-      });
-
-/*-------------------------------END: EVENT HANDLERS------------------------------------------------------------*/
-
-
-function generateSlider()
-{
-
-  var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
-
-        /*Add Date Range Slider with the following options*/
-        $("#slider").dateRangeSlider(
-        {
-            valueLabels: "hide",
-            defaultValues:
-            {
-                min: new Date(2013, 0),
-                max: new Date(2013, 2, 1)
-            },
-            bounds:
-            {
-                min: new Date(2013, 0),
-                max: new Date(2013, 12, 1)
-            },
-            step:
-            {
-                months: 1
-            },
-            /*The option scales requires an array of objects. Each object represents the configuration of one level.
-            Scale configuration object can contain 5 functions:*/
-            scales:
-            [{
-                //first: function(value){ return value; },
-                //end: function(value) {return value; },
-                next: function(value)
-                {
-                    var next = new Date(value);
-                    return new Date(next.setMonth(value.getMonth() + 1));
-                },
-                label: function(value)
-                {
-                    return months[value.getMonth()];
-                }/*,
-                format: function(tickContainer, tickStart, tickEnd){
-                  tickContainer.addClass("myCustomClass");
-                }*/
-            }]
-        });
 }
 
+function PostSyriaEventsJSONtoPage(MinMaxSliderValues)
+{
+  for(var i = 0; i<SyriaEventsJSON.rows.length; i++)
+    {
+      if((SyriaEventsJSON.rows[i].numerical_month == MinMaxSliderValues.minMonth_NumericalMonth) || (SyriaEventsJSON.rows[i].numerical_month == MinMaxSliderValues.maxMonth_NumericalMonth))
+      {
+        if(SyriaEventsJSON.rows[i].governorate == "")   //if governorate column (should be called city) is empty then don't output it
+        {
+          $('#events').append(SyriaEventsJSON.rows[i].month + " " + SyriaEventsJSON.rows[i].numerical_day + ": " + SyriaEventsJSON.rows[i].event_short_discription + "</br></br>");
+        } 
+        else  //if governorate column (should be called city) contains city name then output it
+        {
+          $('#events').append(SyriaEventsJSON.rows[i].month + " " + SyriaEventsJSON.rows[i].numerical_day + " in " + SyriaEventsJSON.rows[i].governorate + ": " + SyriaEventsJSON.rows[i].event_short_discription + "</br></br>");
+        }
+
+      }
+
+    }
+}
+
+function monthNumberToWord(value)
+{
+    switch(value)
+    {
+      case 0:
+      return "January";
+      break;
+
+      case 1:
+      return "February";
+      break;
+
+      case 2:
+      return "March";
+      break;
+
+      case 3:
+      return "April";
+      break;
+
+      case 4:
+      return "May";
+      break;
+
+      case 5:
+      return "June";
+      break;
+
+      case 6:
+      return "July";
+      break;
+
+      case 7:
+      return "August";
+      break;
+
+      case 8:
+      return "September";
+      break;
+
+      case 9:
+      return "October";
+      break;
+
+      case 10:
+      return "November";
+      break;
+
+      case 11:
+      return "December";
+      break;
+    }
+}
 
     </script>
 
